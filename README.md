@@ -86,3 +86,4 @@ Samples of Student Work
 [Eustache](https://eustachewestphal.github.io/GameOfLife/)   
 [Albertina](https://aleesfa.github.io/GameOfLife/)   
 [Alex](https://altakamoto.github.io/GameOfLife/)   
+[Sally](https://5l1a.github.io/GameOfLife/)   
