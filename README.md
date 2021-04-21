@@ -77,6 +77,7 @@ There are also many variations on the rules of the game of life. [This website](
 
 Samples of Student Work
 -----------------------
+[Cassidy](https://cawan15.github.io/Minesweeper/)   
 [Ken](https://keshfer.github.io/GameOfLife/)   
 [Harry](https://harrywong3.github.io/GameOfLife/)   
 [Gui](https://3gui.github.io/GameOfLife/)   
