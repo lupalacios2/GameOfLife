@@ -56,7 +56,7 @@ public void keyPressed() {
     running = !running;
   }
   
-  if (key == BACKSPACE) {
+  if (key == BACKSPACE || key == DELETE) {
     for (int i = 0; i < buttons.length; i++) {
       for (int j = 0; j < buttons[i].length; j++) {
          buttons[i][j].setLife(false);
