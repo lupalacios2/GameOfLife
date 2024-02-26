@@ -1,16 +1,15 @@
 import de.bezier.guido.*;
 
-private final static int NUM_ROWS = 50;
-private final static int NUM_COLS = 50;
+private final static int NUM_ROWS = 25;
+private final static int NUM_COLS = 25;
 
-private Life[][] buttons; //2d array of Life buttons each representing one cell
-private boolean[][] buffer; //2d array of booleans to store state of buttons array
-private boolean running = true; //used to start and stop program
+private Life[][] buttons;
+private boolean[][] buffer;
+private boolean running = true;
 
 public void setup () {
   size(400, 400);
   frameRate(6);
-  
   reset();
 }
 
@@ -29,7 +28,7 @@ public void reset() {
 }
 
 public void draw () {
-  background(0);
+  background(28, 39, 57);
   
   if (running == false) {
     return;
@@ -121,13 +120,13 @@ public class Life {
   private boolean alive;
 
   public Life (int row, int col) {
-    width = 400/NUM_COLS;
-    height = 400/NUM_ROWS;
+    width = 400 / NUM_COLS;
+    height = 400 / NUM_ROWS;
     myRow = row;
     myCol = col; 
-    x = myCol*width;
-    y = myRow*height;
-    alive = Math.random() < .5;
+    x = myCol * width;
+    y = myRow * height;
+    alive = Math.random() < 0.5;
     Interactive.add( this );
   }
 
@@ -137,9 +136,9 @@ public class Life {
 
   public void draw () {    
     if (alive != true) {
-      fill(0);
+      fill(28, 39, 57);
     } else {
-      fill( 150 );
+      fill(227, 98, 78);
       rect(x, y, width, height);
     }
   }
