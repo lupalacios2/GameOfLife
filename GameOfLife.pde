@@ -10,13 +10,14 @@ private boolean running = true; //used to start and stop program
 public void setup () {
   size(400, 400);
   frameRate(6);
-  // make the manager
+  
+  reset();
+}
+
+public void reset() {
+  running = true;
   Interactive.make( this );
-
-  //your code to initialize buttons goes here
   buttons = new Life[NUM_ROWS][NUM_COLS];
-
-  //your code to initialize buffer goes here
   buffer = new boolean[NUM_ROWS][NUM_COLS];
 
   for (int i = 0; i < NUM_ROWS; i++) {
@@ -28,12 +29,14 @@ public void setup () {
 }
 
 public void draw () {
-  background( 0 );
-  if (running == false) //pause the program
+  background(0);
+  
+  if (running == false) {
     return;
+  }
+  
   copyFromButtonsToBuffer();
 
-  //use nested loops to draw the buttons here
   for (int i = 0; i < NUM_ROWS; i++) {
     for (int j = 0; j < NUM_COLS; j++) {
       if (countNeighbors(i, j) == 3) {
@@ -43,7 +46,7 @@ public void draw () {
       } else {
         buffer[i][j] = false;
       }
-      
+
       buttons[i][j].draw();
     }
   }
@@ -56,10 +59,14 @@ public void keyPressed() {
     running = !running;
   }
   
+  if (key == 'r') {
+    reset();
+  }
+
   if (key == RETURN || key == ENTER) {
     for (int i = 0; i < buttons.length; i++) {
       for (int j = 0; j < buttons[i].length; j++) {
-         buttons[i][j].setLife(false);
+        buttons[i][j].setLife(false);
       }
     }
   }
@@ -78,7 +85,8 @@ public void copyFromButtonsToBuffer() {
     for (int j = 0; j < NUM_COLS; j++) {
       buffer[i][j] = buttons[i][j].getLife();
     }
-  }}
+  }
+}
 
 public boolean isValid(int r, int c) {
   if (r >= NUM_ROWS || c >= NUM_COLS || r < 0 || c < 0) {
@@ -119,27 +127,28 @@ public class Life {
     myCol = col; 
     x = myCol*width;
     y = myRow*height;
-    alive = Math.random() < .5; // 50/50 chance cell will be alive
-    Interactive.add( this ); // register it with the manager
+    alive = Math.random() < .5;
+    Interactive.add( this );
   }
 
-  // called by manager
   public void mousePressed () {
-    alive = !alive; //turn cell on and off with mouse press
+    alive = !alive;
   }
+
   public void draw () {    
-    if (alive != true)
+    if (alive != true) {
       fill(0);
-    else 
-    fill( 150 );
-    rect(x, y, width, height);
+    } else {
+      fill( 150 );
+      rect(x, y, width, height);
+    }
   }
+
   public boolean getLife() {
-    //replace the code one line below with your code
     return alive;
   }
+
   public void setLife(boolean living) {
-    //your code here
     alive = living;
   }
 }
