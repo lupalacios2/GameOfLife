@@ -1,7 +1,7 @@
 import de.bezier.guido.*;
 
-private final static int NUM_ROWS = 25;
-private final static int NUM_COLS = 25;
+private final static int NUM_ROWS = 20;
+private final static int NUM_COLS = 20;
 
 private Life[][] buttons;
 private boolean[][] buffer;
@@ -9,7 +9,7 @@ private boolean running = true;
 
 public void setup () {
   size(400, 400);
-  frameRate(6);
+  frameRate(3);
   reset();
 }
 
@@ -30,7 +30,8 @@ public void reset() {
 public void draw () {
   background(28, 39, 57);
   
-  if (running == false) {
+  if (!running) {
+    System.out.println("Paused");
     return;
   }
   
@@ -88,11 +89,7 @@ public void copyFromButtonsToBuffer() {
 }
 
 public boolean isValid(int r, int c) {
-  if (r >= NUM_ROWS || c >= NUM_COLS || r < 0 || c < 0) {
-    return false;
-  } else {
-    return true;
-  }
+  return !(r >= NUM_ROWS || c >= NUM_COLS || r < 0 || c < 0);
 }
 
 public int countNeighbors(int row, int col) {
@@ -131,6 +128,10 @@ public class Life {
   }
 
   public void mousePressed () {
+    alive = !alive;
+  }
+  
+  public void mouseDragged () {
     alive = !alive;
   }
 
