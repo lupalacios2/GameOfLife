@@ -10,11 +10,7 @@ private boolean running = true;
 public void setup () {
   size(400, 400);
   frameRate(6);
-  reset();
-}
-
-public void reset() {
-  running = true;
+  
   Interactive.make( this );
   buttons = new Life[NUM_ROWS][NUM_COLS];
   buffer = new boolean[NUM_ROWS][NUM_COLS];
@@ -56,10 +52,6 @@ public void draw () {
 public void keyPressed() {
   if (key == ' ') {
     running = !running;
-  }
-  
-  if (key == 'r') {
-    reset();
   }
 
   if (key == RETURN || key == ENTER) {
