@@ -10,7 +10,11 @@ private boolean running = true;
 public void setup () {
   size(400, 400);
   frameRate(6);
-  
+  reset();
+}
+
+public void reset() {
+  running = true;
   Interactive.make( this );
   buttons = new Life[NUM_ROWS][NUM_COLS];
   buffer = new boolean[NUM_ROWS][NUM_COLS];
@@ -18,28 +22,27 @@ public void setup () {
   for (int i = 0; i < NUM_ROWS; i++) {
     for (int j = 0; j < NUM_COLS; j++) {
       buttons[i][j] = new Life(i, j);
-      buffer[i][j] = buttons[i][j].getLife();
     }
   }
 }
 
 public void draw () {
   background(28, 39, 57);
-  
+ 
   if (!running) {
     return;
   }
-  
+ 
   copyFromButtonsToBuffer();
 
   for (int i = 0; i < NUM_ROWS; i++) {
     for (int j = 0; j < NUM_COLS; j++) {
       if (countNeighbors(i, j) == 3) {
-        buffer[i][j] = true;
-      } else if (countNeighbors(i, j) == 2 && buttons[i][j].getLife()) {
-        buffer[i][j] = true;
-      } else {
-        buffer[i][j] = false;
+        buffer[i][j]=true;
+      } else if (countNeighbors(i, j) == 2 && buttons[i][j].getLife())
+        buffer[i][j]=true;
+      else {
+        buffer[i][j]=false;
       }
 
       buttons[i][j].draw();
@@ -50,13 +53,17 @@ public void draw () {
 }
 
 public void keyPressed() {
+  if (key == 'r') {
+    reset();
+  }
+ 
   if (key == ' ') {
     running = !running;
   }
 
   if (key == RETURN || key == ENTER) {
-    for (int i = 0; i < buttons.length; i++) {
-      for (int j = 0; j < buttons[i].length; j++) {
+    for (int i = 0; i < NUM_ROWS; i++) {
+      for (int j = 0; j < NUM_COLS; j++) {
         buttons[i][j].setLife(false);
       }
     }
@@ -111,7 +118,7 @@ public class Life {
     width = 400 / NUM_COLS;
     height = 400 / NUM_ROWS;
     myRow = row;
-    myCol = col; 
+    myCol = col;
     x = myCol * width;
     y = myRow * height;
     alive = Math.random() < 0.5;
@@ -121,18 +128,15 @@ public class Life {
   public void mousePressed () {
     alive = !alive;
   }
-  
-  public void mouseDragged () {
-    alive = !alive;
-  }
 
   public void draw () {    
     if (alive != true) {
       fill(28, 39, 57);
     } else {
       fill(227, 98, 78);
-      rect(x, y, width, height);
     }
+      
+    rect(x, y, width, height);
   }
 
   public boolean getLife() {
