@@ -9,7 +9,7 @@ private boolean running = true;
 
 public void setup () {
   size(400, 400);
-  frameRate(3);
+  frameRate(6);
   reset();
 }
 
