@@ -131,8 +131,10 @@ public class Life {
 
   public void draw () {    
     if (alive != true) {
+      noStroke();
       fill(28, 39, 57);
     } else {
+      stroke(0);
       fill(227, 98, 78);
     }
       
