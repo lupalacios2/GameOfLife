@@ -31,7 +31,6 @@ public void draw () {
   background(28, 39, 57);
   
   if (!running) {
-    System.out.println("Paused");
     return;
   }
   
